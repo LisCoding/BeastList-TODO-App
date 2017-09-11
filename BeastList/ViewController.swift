@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var TableView: UITableView!
     @IBOutlet weak var userInput: UITextField!
@@ -22,10 +22,17 @@ class ViewController: UIViewController {
         userInput.text = ""
         
     }
+    //remove a tasks from the task list
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Section: \(indexPath.section) and Row: \(indexPath.row)")
+        tasks.remove(at: indexPath.row)
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         TableView.dataSource = self
+        TableView.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
   
